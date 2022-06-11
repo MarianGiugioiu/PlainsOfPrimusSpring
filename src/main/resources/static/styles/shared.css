@@ -1,0 +1,20 @@
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 92vh;
+    background-color: #98B4AA;
+}
+
+.link-button {
+    font: bold 18px Arial;
+    text-decoration: none;
+    background-color: red;
+    color: #333333;
+    margin-top: 1vh;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}

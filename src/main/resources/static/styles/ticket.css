@@ -1,0 +1,38 @@
+.info-container {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 92vh;
+    background-color: #F1E0AC;
+    border-radius: 15px 50px 30px;
+    padding: 1vh 2vw 3vh;
+    align-items: center;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    height: 92vh;
+    background-color: #F1E0AC;
+    border-radius: 15px 50px 30px;
+    padding: 1vh 2vw 3vh;
+}
+
+.change-page-container {
+    display: flex;
+    justify-content: space-between;
+    width: 65vw;
+    margin-bottom: 1vh;
+}
+
+.input {
+    width: 20vw;
+    height: 5vh;
+}
+
+.error {
+    font-size: 12px;
+    color: red;
+}

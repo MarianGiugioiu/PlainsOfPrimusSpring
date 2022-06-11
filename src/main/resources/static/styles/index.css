@@ -1,0 +1,15 @@
+.info-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 65vh;
+    background-color: #F1E0AC;
+    border-radius: 15px 50px 30px;
+    padding: 1vh 2vw 3vh;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="../static/styles/achievement.css" th:href="@{/styles/achievement.css}" rel="stylesheet" />
+    <link href="../static/styles/shared.css" th:href="@{/styles/shared.css}" rel="stylesheet" />
+    <div th:replace="navbar :: header"></div>
+</head>
+<body>
+<div th:replace="navbar :: navbar">
+</div>
+<div class="page-container">
+    <div class="list-container">
+        <h1>Achievement List</h1>
+        <form th:object="${options}" th:action="@{'/achievements/red/options/?page=1'}" method="POST">
+            <div th:class="change-page-container">
+                <div th:class="row">
+                    <label>Filter: </label>
+                    <input id="filter" type="text" class="form-control input" th:field="*{name}"/>
+                </div>
+                <div th:class="row">
+                    <label>Order: </label>
+                    <select id="order" name="order" th:field="*{selectedOrder}">
+                        <option
+                                th:each="option : ${options.orderList}"
+                                th:value="${option}" th:text="${option}">
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+        <table class="table table-hover ">
+            <thead class="thead-inverse">
+            <tr>
+                <th>Nr.</th>
+                <th>Name</th>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <th>Edit</th>
+                </div>
+                <div sec:authorize="hasRole('GUEST')">
+                    <th>Details</th>
+                </div>
+            </tr>
+            </thead>
+            <tr th:each="achievement, stat : ${achievements}"
+                th:class="${stat.odd}? 'table-light':'table-dark'"
+            >
+                <td th:text="${page * itemsPerPage + stat.index + 1}">1</td>
+                <td th:text="${achievement.name}">1</td>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <td><a href="#" th:href="@{'/achievements/edit/' + ${achievement.id}}">Edit</a></td>
+                </div>
+                <div sec:authorize="hasRole('GUEST')">
+                    <td><a href="#" th:href="@{'/achievements/details/' + ${achievement.id}}">Details</a></td>
+                </div>
+            </tr>
+        </table>
+
+        <div th:class="change-page-container">
+            <div>
+                <a th:if="${page>0}" href="#" th:href="@{'/achievements/options/?page=' + ${page} + '&filter=' + ${options.name} + '&sort=' + ${options.selectedOrder}}" th:class="link-button"><-</a>
+                <button th:if="${page==0}" disabled><-</button>
+            </div>
+            <p th:text="${page + 1}">1</p>
+            <div>
+                <a th:if="${achievements.size() == itemsPerPage}" href="#" th:href="@{'/achievements/options/?page=' + ${page + 2} + '&filter=' + ${options.name} + '&sort=' + ${options.selectedOrder}}" th:class="link-button">-></a>
+                <button th:if="${achievements.size() < itemsPerPage}" disabled>-></button>
+            </div>
+        </div>
+
+        <form sec:authorize="hasRole('ADMIN')" th:action="@{/achievements/new}" method="POST"> <input type="submit" class="btn btn-primary" value="Create Achievement"> </form>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

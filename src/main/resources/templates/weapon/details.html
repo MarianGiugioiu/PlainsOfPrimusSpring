@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="../static/styles/weapon.css" th:href="@{/styles/weapon.css}" rel="stylesheet" />
+    <link href="../static/styles/shared.css" th:href="@{/styles/shared.css}" rel="stylesheet" />
+    <div th:replace="navbar :: header"></div>
+</head>
+<body>
+<div th:replace="navbar :: navbar">
+</div>
+<div class="page-container">
+    <div class="info-container">
+            <h1 class="panel-title">Weapon Details</h1>
+            <div class="col">
+                <div class="col form-group">
+                    <label>Weapon name:</label>
+                    <input readonly type="text" class="form-control input" th:field="*{weapon.name}"/>
+                </div>
+
+                <div class="col form-group">
+                    <label>Weapon image:</label>
+                    <img width="200px" height="180px" th:src="${weapon.image}">
+                </div>
+
+                <div class="col form-group">
+                    <label>Weapon attack damage:</label>
+                    <input readonly type="number" class="form-control input" th:field="*{weapon.attackDamage}"/>
+                </div>
+
+                <div class="col form-group">
+                    <label>Weapon special effect:</label>
+                    <input readonly type="text" class="form-control input" th:field="*{weapon.specialBonus}"/>
+                </div>
+            </div>
+            <a th:if="${useActive}" href="#" th:href="@{'/weapons/use/' + ${weapon.id}}" th:class="link-button">Use Weapon</a>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

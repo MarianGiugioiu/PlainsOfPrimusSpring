@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="../static/styles/index.css" th:href="@{/styles/index.css}" rel="stylesheet" />
+    <link href="../static/styles/shared.css" th:href="@{/styles/shared.css}" rel="stylesheet" />
+    <div th:replace="navbar :: header"></div>
+</head>
+<body>
+<div th:replace="navbar :: navbar">
+</div>
+<div class="page-container">
+    <div class="info-container">
+        <div class="title">
+            <h1>Plains of Primus</h1>
+        </div>
+        <p class="lead">Long before humans existed on the planet of Kratus, from outer space there came a being of immense power called Primus.</p>
+        <p class="lead">He soon dominated the entire world and started forging the layout of the planet to be to his liking. But soon, he realized he wanted someone to aknoledge his power and genius, so he guided the most evolved species on the planet into becoming the sapient race of humans.</p>
+        <p class="lead">In the present, no one knows why, but at some point the humans rebelled against Primus and managed to overthrow and kill him. Remnants of his body still remain today, in the place he was defeated, called the Plains of Primus, where different artifacts formed out of them.</p>
+        <p class="lead">Embark on an adventure to recover a significant part of his lost power and maybe continue his legacy!</p>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

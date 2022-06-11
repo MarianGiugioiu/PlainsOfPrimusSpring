@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en"
+>
+<head>
+    <div th:fragment="header">
+    <link href="../static/styles/navbar.css" th:href="@{/styles/navbar.css}" rel="stylesheet" />
+    </div>
+</head>
+<body>
+<div th:fragment="navbar">
+<nav class="navbar navbar-expand-lg navbar-light navbar-bg">
+    <div class="container-fluid">
+        <a class="navbar-brand lead fs-2" href="/"><b>Home</b></a>
+        <div class="options">
+            <a sec:authorize="hasRole('GUEST')" class="navbar-brand lead fs-2" href="/character">Character</a>
+            <a class="navbar-brand lead fs-2" href="/weapons/?page=1">Weapons</a>
+            <a class="navbar-brand lead fs-2" href="/armors/?page=1">Armors</a>
+            <a class="navbar-brand lead fs-2" href="/achievements/?page=1">Achievements</a>
+            <a class="navbar-brand lead fs-2" href="/abilities/?page=1">Abilities</a>
+            <a class="navbar-brand lead fs-2" href="/tickets/?page=1">Tickets</a>
+        </div>
+
+        <div class="navbar-nav user-container">
+            <div sec:authorize="!isAuthenticated()">
+                <button onclick="window.location.href='/login'" class="btn btn-secondary">Sign In</button>
+            </div>
+            <div class="logout-container" sec:authorize="isAuthenticated()">
+                <label class="label" sec:authentication="name">username</label>
+                <label class="label" sec:authorize="hasRole('ADMIN')">(admin)</label>
+                <form th:action="@{/logout}" method="POST"> <input type="submit" class="btn btn-light" value="Logout"> </form>
+            </div>
+        </div>
+    </div>
+</nav>
+</div>
+</body>
+</html>
